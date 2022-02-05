@@ -1,7 +1,5 @@
 <?php
 
-// TicTacToe
-
 $board = [
     ['-', '-', '-'],
     ['-', '-', '-'],
@@ -25,14 +23,25 @@ $combinations = [
     ],
     [
         [0, 0], [1, 1], [2, 2]
+    ],
+    [
+        [0, 2], [1, 2], [2, 2],
+    ],
+    [
+        [0, 1], [1, 1], [2, 1]
+    ],
+    [
+        [0, 0], [0, 1], [0, 2]
+    ],
+    [
+        [2, 0], [1, 1], [0, 2]
     ]
 ];
 
 function winnerWinnerChickenDinner(array $combinations, array $board, string $activePlayer): bool
 {
     foreach ($combinations as $combination) {
-        foreach ($combination as $item)
-        {
+        foreach ($combination as $item) {
             [$row, $column] = $item;
             if ($board[$row][$column] !== $activePlayer) {
                 break;
@@ -54,11 +63,23 @@ function isBoardFull(array $board): bool
     }
     return true;
 }
+
+function drawBoard(array $board): void
+{
+    foreach ($board as $item) {
+        foreach ($item as $value) {
+            echo "  $value  ";
+        }
+        echo PHP_EOL;
+    }
+}
+
 // X
 // $board[0][0] = X
 while (!isBoardFull($board) && !winnerWinnerChickenDinner($combinations, $board, $activePlayer)) {
-    $position = readline('Enter position: ');
-    [$row, $column] = explode(',', $position);
+    drawBoard($board);
+    $position = readline("Enter position ({$activePlayer}): ");
+    [$row, $column] = explode(', ', $position);
 
     if ($board[$row][$column] !== '-') {
         echo 'Invalid position. its taken!' . PHP_EOL;
@@ -67,8 +88,7 @@ while (!isBoardFull($board) && !winnerWinnerChickenDinner($combinations, $board,
 
     $board[$row][$column] = $activePlayer;
 
-    if (winnerWinnerChickenDinner($combinations, $board, $activePlayer))
-    {
+    if (winnerWinnerChickenDinner($combinations, $board, $activePlayer)) {
         echo 'Winner is ' . $activePlayer;
         echo PHP_EOL;
         exit;
