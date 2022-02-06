@@ -6,7 +6,7 @@ $board = [
     ['-', '-', '-'],
 ];
 
-$player1 = readline("enter player 1: ");
+$player1 = readline("Enter player 1: ");
 $player2 = readline("Enter player 2: ");
 
 $activePlayer = $player1;

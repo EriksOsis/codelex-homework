@@ -17,9 +17,9 @@ abstract class Figure
 
 class Circle extends Figure
 {
-    private int $radius;
+    private string $radius;
 
-    public function __construct(string $name, int $radius)
+    public function __construct(string $name, string $radius)
     {
         parent::__construct($name);
         $this->radius = $radius;
@@ -31,12 +31,6 @@ class Circle extends Figure
     }
 }
 
-/*function makeCircle(): Circle
-{
-    $name = readline("Name: ");
-    $radius = (int) readline("What is its radius: ");
-    return new Circle($name, $radius);
-}*/
 
 class Triangle extends Figure
 {
@@ -57,14 +51,6 @@ class Triangle extends Figure
     }
 }
 
-/*function makeTriangle(): Triangle
-{
-    $name = readline("Name: ");
-    $base = (int) readline("Whats its base lenght: ");
-    $height = (int) readline("Whats its height: ");
-    return new Triangle($name, $base, $height);
-}*/
-
 class Square extends Figure
 {
     private int $side1;
@@ -83,17 +69,6 @@ class Square extends Figure
     }
 }
 
-/*function makeSquare(): Square
-{
-    $name = readline("Name: ");
-    $side1 = (int) readline("How long is one side: ");
-    $side2 = (int) readline("How long is the other side: ");
-    return new Square($name, $side1, $side2);
-}*/
-
-
-
-
 /*class All
 {
     private array $list = [];
@@ -109,15 +84,15 @@ class Square extends Figure
     {
         return $this->list;
     }
-}*/
-
+}
+*/
 //$all = new All();
 //$all->addToList($circle, $triangle, $square);
 //print_r($all->getList());
 
 class Calculator
 {
-    private array $figures = [];
+    public array $figures = [];
 
     public function add(Figure $figure)
     {
@@ -137,20 +112,7 @@ class Calculator
 
 $allAreas = new Calculator();
 
-//$circle = new Circle("Circle", 2);
-//echo $circle->getName() . $circle->getArea() . PHP_EOL;
-//$allAreas->add($circle);
-
-$triangle = new Triangle("Triangle", 2, 4);
-echo $triangle->getName() . $triangle->getArea() . PHP_EOL;
-$allAreas->add($triangle);
-
-$square = new Square("Square", 4, 5);
-echo $square->getName() . $square->getArea() . PHP_EOL;
-$allAreas->add($square);
-
 echo "The sum of all areas is: " . $allAreas->calcArea() . PHP_EOL;
-
 
 echo "Choose which figures area would you like to calculate: " . PHP_EOL;
 echo "[1] Circle" . PHP_EOL;
@@ -161,25 +123,32 @@ $option = readline("Select: ");
 
 switch ($option) {
     case 1:
-        $circle = new Circle("Circle", 2);
-        //echo "Area of circle is: " . $circle->getArea() . PHP_EOL;
-        //$figures->add(makeCircle()->getArea());
+        $askRadius = readline("What is the radius of the circle: ");
+        $circle = new Circle("Circle", "{$askRadius}");
+        echo "Area of circle is: " . $circle->getArea() . PHP_EOL;
+        //$figures->add($circle->getArea());
         break;
     case 2:
+        $askBase = readline("What is the base of the triangle: ");
+        $askHeight = readline("What is the height of the triangle: ");
+        $triangle = new Triangle("Triangle", "{$askBase}", "{$askHeight}");
         echo "Area of triangle is: " . $triangle->getArea() . PHP_EOL;
-        //$figure->add(makeTriangle()->getArea());
+        //$figure->add($triangle->getArea());
         break;
     case 3:
+        $askSide1 = readline("What is 1st side of the square: ");
+        $askSide2 = readline("What is 2nd side of the square: ");
+        $square = new Square("Square", "{$askSide1}", "{$askSide2}");
         echo "Area of square is: " . $square->getArea() . PHP_EOL;
-        //$figures->add(makeSquare()->getArea());
+        //$figures->add($square->getArea());
         break;
-    //case 4:
-        //foreach ($figures as $item) {
+    case 4:
+        //foreach ($this->figures as $item) {
             //foreach ($item as $shape) {
-                //$sum =+ $item->getArea();
-            //}
-       // }
-        //echo $sum;
+               //$sum = +$item->getArea();
+           // }
+        //}
+       // echo $sum;
         //break;
 }
 
