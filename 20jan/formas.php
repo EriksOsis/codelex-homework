@@ -94,7 +94,7 @@ class Calculator
 {
     public array $figures = [];
 
-    public function add(Figure $figure)
+    public function add(int $figure)
     {
         $this->figures[] = $figure;
     }
@@ -126,30 +126,30 @@ switch ($option) {
         $askRadius = readline("What is the radius of the circle: ");
         $circle = new Circle("Circle", "{$askRadius}");
         echo "Area of circle is: " . $circle->getArea() . PHP_EOL;
-        //$figures->add($circle->getArea());
+        $allAreas->add($circle->getArea());
         break;
     case 2:
         $askBase = readline("What is the base of the triangle: ");
         $askHeight = readline("What is the height of the triangle: ");
         $triangle = new Triangle("Triangle", "{$askBase}", "{$askHeight}");
         echo "Area of triangle is: " . $triangle->getArea() . PHP_EOL;
-        //$figure->add($triangle->getArea());
+        $allAreas->add($triangle->getArea());
         break;
     case 3:
         $askSide1 = readline("What is 1st side of the square: ");
         $askSide2 = readline("What is 2nd side of the square: ");
         $square = new Square("Square", "{$askSide1}", "{$askSide2}");
         echo "Area of square is: " . $square->getArea() . PHP_EOL;
-        //$figures->add($square->getArea());
+        $allAreas->add($square->getArea());
         break;
     case 4:
-        //foreach ($this->figures as $item) {
-            //foreach ($item as $shape) {
-               //$sum = +$item->getArea();
-           // }
-        //}
-       // echo $sum;
-        //break;
+        foreach ($allAreas as $item) {
+            foreach ($item as $shape) {
+               $sum = +$item->getArea();
+            }
+        }
+        echo $sum;
+        break;
 }
 
 //izveidot izvēli, izveidot formu, ierakstīt parametrus, ievietot formu, aizpilda nepieciešamo info, kas tiek

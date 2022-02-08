@@ -61,8 +61,3 @@ class Deck
         }
     }
 }
-
-class Desk
-{
-
-}
